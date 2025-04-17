@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@drawable/stats_figure">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="8dp">
+        <RadioButton
+            android:id="@+id/lutemonRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:enabled="true">
+
+        </RadioButton>
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/lutemonName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lutemon Name"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/lutemonColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Color"
+                android:textStyle="italic"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/lutemonInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ATK: 0 DEF: 0 HP: 0/0"/>
+            <TextView
+                android:id="@+id/lutemonExperience"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Experience: 0"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/lutemonColorCircle"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="25dp"
+            android:background="@drawable/circle_black" />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

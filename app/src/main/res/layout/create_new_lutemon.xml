@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible">
+
+    <EditText
+        android:id="@+id/newLutemonName"
+        android:layout_width="220dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:hint="Enter Lutemon name"
+        android:inputType="text"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.175"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="320dp"
+        android:layout_height="31dp"
+        android:autoSizeTextType="uniform"
+        android:text="Select Your Lutemon:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.192"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newLutemonName"
+        app:layout_constraintVertical_bias="0.057" />
+
+    <RadioGroup
+        android:id="@+id/createLutemonBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.053">
+
+        <RadioButton
+            android:id="@+id/createWhiteBtn"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:checked="true"
+            android:drawableRight="@drawable/circle_white"
+            android:text="White (ATK: 5, DEF: 4, HP: 20)" />
+
+        <RadioButton
+            android:id="@+id/createGreenBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:drawableRight="@drawable/circle_green"
+            android:text="Green (ATK: 6, DEF: 3, HP: 19)" />
+
+        <RadioButton
+            android:id="@+id/createPinkBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:drawableRight="@drawable/circle_pink"
+            android:text="Pink (ATK: 7, DEF: 2, HP: 18)" />
+
+        <RadioButton
+            android:id="@+id/createBlackBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:drawableRight="@drawable/circle_black"
+            android:text="Black (ATK: 9, DEF: 0, HP: 16)" />
+
+        <RadioButton
+            android:id="@+id/createOrangeBtn"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:drawableRight="@drawable/circle_orange"
+            android:text="Orange (ATK: 8, DEF: 1, HP: 17)" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/selectColorBtn"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="217dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="68dp"
+
+        android:onClick="newLutemon"
+        android:text="Create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createLutemonBtn"
+        app:layout_constraintVertical_bias="0.788" />
+
+    <Button
+        android:id="@+id/cancleBtn"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="226dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="24dp"
+        android:onClick="cancleBtn"
+        android:text="cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="238dp"
+        android:layout_height="42dp"
+        android:text="Create New Lutemon"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@+id/newLutemonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/selectColorBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createLutemonBtn" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

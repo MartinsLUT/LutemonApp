@@ -1,0 +1,62 @@
+package com.example.lutemonapp;
+
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.ads.MobileAds;
+
+
+
+public class MainActivity extends AppCompatActivity {
+    Button createLutemonBtn, viewHomeBtn, viewBattleArenaBtn, viewTrainingAreaBtn, viewStatisticsBtn;
+    TextView lutemonHome, lutemonBattlle, lutemonTraining;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.homescreen_main);
+
+        lutemonHome = findViewById(R.id.lutemonHome);
+        lutemonBattlle = findViewById(R.id.lutemonBattlle);
+        lutemonTraining = findViewById(R.id.lutemonHome2);
+        updateInfo();
+
+        createLutemonBtn = findViewById(R.id.newLutemon);
+        viewHomeBtn = findViewById(R.id.viewHome);
+        viewBattleArenaBtn = findViewById(R.id.viewBattleArena);
+        viewTrainingAreaBtn = findViewById(R.id.viewTrainingArea);
+        viewStatisticsBtn = findViewById(R.id.viewStatistics);
+
+        createLutemonBtn.setOnClickListener(v -> startActivity(new Intent(this, CreateNewLutemonActivity.class)));
+        viewHomeBtn.setOnClickListener(v -> startActivity(new Intent(this, HomeLutemonActivity.class)));
+        viewBattleArenaBtn.setOnClickListener(v -> startActivity(new Intent(this, BattleArenaActivity.class)));
+        viewTrainingAreaBtn.setOnClickListener(v -> startActivity(new Intent(this, TrainingActivity.class)));
+        viewStatisticsBtn.setOnClickListener(v -> startActivity(new Intent(this, StatisticsActivity.class)));
+    }
+
+
+    private void updateInfo() {
+        lutemonHome.setText("You have " + Home.getNumberOfLutemonsAtHome() + " Lutemons at home");
+        lutemonBattlle.setText("You have " + BattleField.getNumberOfLutemonsAtBattle() + " Lutemons ready");
+        lutemonTraining.setText("You have " + TrainingArea.getNumberOfLutemonsAtTrainingArea() + " Lutemons training");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
