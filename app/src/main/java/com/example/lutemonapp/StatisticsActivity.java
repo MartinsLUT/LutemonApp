@@ -29,7 +29,7 @@ public class StatisticsActivity extends AppCompatActivity {
         //Using stats layout
 
 
-        for (Lutemon lutemon : Home.getLutemons().values()) {
+        for (Lutemon lutemon : Home.getLutemons()) {
             View lutemonStats = getLayoutInflater().inflate(R.layout.stats_layout, null);
             TextView lutemonName = lutemonStats.findViewById(R.id.lutemonName);
             TextView lutemonColor = lutemonStats.findViewById(R.id.lutemonColor);

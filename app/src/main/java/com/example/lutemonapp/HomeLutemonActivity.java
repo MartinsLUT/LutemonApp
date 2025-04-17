@@ -29,7 +29,7 @@ public class HomeLutemonActivity extends AppCompatActivity {
 
     }
     public void moveToBattle (View view) {
-        Lutemon selectedLutemon = Home.listOfLutemonsAtHome().get(radioGroup.getCheckedRadioButtonId());
+        Lutemon selectedLutemon = Home.getLutemon(radioGroup.getCheckedRadioButtonId());
         if (selectedLutemon != null && BattleField.getNumberOfLutemonsAtBattle() < 2) {
             Home.moveLutemonToBattleField(selectedLutemon.getId());
             Intent intent = new Intent(this, MainActivity.class);
@@ -54,7 +54,7 @@ public class HomeLutemonActivity extends AppCompatActivity {
 
 
     private void showLutemons() {
-        for (Lutemon lutemon : Home.listOfLutemonsAtHome().values()) {
+        for (Lutemon lutemon : Home.listOfLutemonsAtHome()) {
             RadioButton radioButton = new RadioButton(this);
             radioButton.setId(lutemon.getId());
 

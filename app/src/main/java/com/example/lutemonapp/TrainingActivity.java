@@ -3,6 +3,7 @@ package com.example.lutemonapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,6 +14,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class TrainingActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     Button moveHome, trainBtn, xpBtn;
@@ -20,6 +23,8 @@ public class TrainingActivity extends AppCompatActivity {
     LinearLayout lutemonTraining;
     View lutemonFigure;
     TextView lutemonProgress;
+    ArrayList<RadioButton> checkedLutemon = new ArrayList<>();
+
 
 
     @Override
@@ -28,7 +33,7 @@ public class TrainingActivity extends AppCompatActivity {
         setContentView(R.layout.training_area);
 
 
-        radioGroup = findViewById(R.id.RadioGroup);
+        radioGroup = findViewById(R.id.trainingLutemons);
         moveHome = findViewById(R.id.moveHome);
         trainBtn = findViewById(R.id.trainSelected);
         xpBtn = findViewById(R.id.xpBtn);
@@ -37,15 +42,8 @@ public class TrainingActivity extends AppCompatActivity {
         lutemonProgress = lutemonFigure.findViewById(R.id.lutemonTrainingProgress);
 
 
+
         showLutemons();
-
-        moveHome.setOnClickListener(v -> {
-            Home.moveLutemonToHomeFromTraining(radioGroup.getCheckedRadioButtonId());
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
 
 
         xpBtn.setOnClickListener(v -> {
@@ -65,14 +63,25 @@ public class TrainingActivity extends AppCompatActivity {
 
     private void showLutemons(){
         radioGroup.removeAllViews();
-        for(Lutemon lutemon : Home.listOfLutemonsAtTrainingArea().values()){
-            View lutemonRadioBtn = getLayoutInflater().inflate(R.layout.lutemon_radiobtn, null);
+
+        for(Lutemon lutemon : Home.listOfLutemonsAtTrainingArea()){
+            View lutemonRadioBtn = LayoutInflater.from(this).inflate(R.layout.lutemon_radiobtn, null);
+
+            //RadioButton radioButton = new RadioButton(this);
             RadioButton radioButton = lutemonRadioBtn.findViewById(R.id.lutemonRadioButton);
+            radioButton.setId(lutemon.getId());
+            checkedLutemon.add(radioButton);
+
+
+
+
+
             TextView lutemonName = lutemonRadioBtn.findViewById(R.id.lutemonName);
             TextView lutemonColor = lutemonRadioBtn.findViewById(R.id.lutemonColor);
             TextView lutemonInfo = lutemonRadioBtn.findViewById(R.id.lutemonInfo);
             TextView lutemonExperience = lutemonRadioBtn.findViewById(R.id.lutemonExperience);
             View colorCircle = lutemonRadioBtn.findViewById(R.id.lutemonColorCircle);
+
             lutemonName.setText(lutemon.name);
             lutemonColor.setText(lutemon.color);
             lutemonInfo.setText("ATK: " + lutemon.attack + " DEF: " + lutemon.defense + " HP: " + lutemon.health + "/" + lutemon.maxHealth);
@@ -99,12 +108,16 @@ public class TrainingActivity extends AppCompatActivity {
                     colorId = R.drawable.circle_orange;
                     break;
             }
+
             colorCircle.setBackgroundResource(colorId);
-            radioButton.setId(lutemon.getId());
-
-            //Adding layout to radio button
-
             radioGroup.addView(lutemonRadioBtn);
+
+
+
+
+
+
+
             //setOnClickListener for radio button
 
 
@@ -114,9 +127,25 @@ public class TrainingActivity extends AppCompatActivity {
 
         }
     }
+    public int getCheckedButton(View view) {
+
+        return radioGroup.getCheckedRadioButtonId();
+    }
 
     public void trainButton(View view) {
-        selectedLutemon = Home.listOfLutemonsAtTrainingArea().get(radioGroup.getCheckedRadioButtonId());
+        for (int i = 0; i < checkedLutemon.size(); i++) {
+            if (checkedLutemon.get(i).isChecked()) {
+                radioGroup.check(checkedLutemon.get(i).getId());
+                //selectedLutemon = Home.listOfLutemonsAtTrainingArea().get(radioGroup.getCheckedRadioButtonId());
+            }
+
+        }
+        try {
+            selectedLutemon = Home.listOfLutemonsAtTrainingArea().get(radioGroup.getCheckedRadioButtonId());
+        } catch (IndexOutOfBoundsException e) {
+            selectedLutemon = null;
+        }
+        //selectedLutemon = Home.listOfLutemonsAtTrainingArea().get(radioGroup.getCheckedRadioButtonId());
 
         if (selectedLutemon != null && selectedLutemon.experience > 0) {
             TrainingArea.train(selectedLutemon);
@@ -144,6 +173,26 @@ public class TrainingActivity extends AppCompatActivity {
             colorCircle.setBackgroundResource(colorId);
         } else {
             trainBtn.setError("Not enough experience!");
+        }
+    }
+
+    public void moveHomeBtn(View view) {
+        if (lutemonProgress.getText().equals("Training in progress ...")) {
+            moveHome.setError("Train first!");
+            return;
+        } else {
+            for (int i = 0; i < checkedLutemon.size(); i++) {
+                if (checkedLutemon.get(i).isChecked()) {
+                    radioGroup.check(checkedLutemon.get(i).getId());
+                }
+            }
+        }
+        selectedLutemon = Home.listOfLutemonsAtTrainingArea().get(radioGroup.getCheckedRadioButtonId());
+        if (selectedLutemon != null) {
+            Home.moveLutemonToHomeFromTraining(selectedLutemon.id);
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 

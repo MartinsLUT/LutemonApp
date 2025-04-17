@@ -30,18 +30,22 @@ public class BattleField {
     }
 
     public static int getNumberOfBattles(){
+
         return numberOfBattles;
     }
 
     public static int getNumberOfLutemonsAtBattle(){
+
         return numberOflutemonsAtBatlle;
     }
 
     public static void addLutemon(){
+
         numberOflutemonsAtBatlle++;
     }
 
     public static void removeLutemon(){
+
         numberOflutemonsAtBatlle--;
     }
 

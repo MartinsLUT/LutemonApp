@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BattleArenaActivity extends AppCompatActivity {
@@ -40,9 +41,19 @@ public class BattleArenaActivity extends AppCompatActivity {
 
 
 
-        HashMap<Integer, Lutemon> lutemons = Home.listOfLutemonsAtBattleField();
-        lutemon1 = lutemons.get(0);
-        lutemon2 = lutemons.get(1);
+        ArrayList<Lutemon> lutemons = Home.listOfLutemonsAtBattleField();
+        try {
+            lutemon1 = lutemons.get(0);
+        }
+        catch (IndexOutOfBoundsException e){
+            lutemon1 = null;
+        };
+        try {
+            lutemon2 = lutemons.get(1);
+            }
+        catch (IndexOutOfBoundsException e){
+            lutemon2 = null;
+        };
 
         if (lutemon1 != null) {
             showLutemons(lutemon1, lutemonLayout1);

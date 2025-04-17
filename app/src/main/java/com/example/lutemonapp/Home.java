@@ -1,5 +1,6 @@
 package com.example.lutemonapp;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Home  {
@@ -7,49 +8,59 @@ public class Home  {
 
 
 
-    private static HashMap<Integer, Lutemon> lutemons = new HashMap<>();
-    private static HashMap<Integer, Lutemon> lutemonsAtHome = new HashMap<>();
-    private static HashMap<Integer, Lutemon> lutemonsAtBattleField = new HashMap<>();
-    private static HashMap<Integer, Lutemon> lutemonsAtTrainingArea = new HashMap<>();
+    private static ArrayList<Lutemon> lutemons = new ArrayList<>();
+    private static ArrayList<Lutemon> lutemonsAtHome = new ArrayList<>();
+    private static ArrayList<Lutemon> lutemonsAtBattleField = new ArrayList<>();
+    private static ArrayList<Lutemon> lutemonsAtTrainingArea = new ArrayList<>();
     private static int numberOfLutemonsAtHome = 0;
 
     public static void createLutemon(Lutemon lutemon) {
-        int lutemonid = lutemon.id;
-        lutemons.put(lutemonid,lutemon);
-        lutemonsAtHome.put(lutemonid, lutemon);
+        lutemons.add(lutemon);
+        lutemonsAtHome.add(lutemon);
         numberOfLutemonsAtHome++;
     }
+    public static Lutemon getLutemon(int id) {
+        for (Lutemon lutemon : lutemons) {
+            if (lutemon.id == id) {
+                return lutemon;
+
+            }
+
+        }
+        return null;
+
+    }
 
 
-    public static HashMap<Integer, Lutemon> getLutemons() {
+    public static ArrayList<Lutemon> getLutemons() {
         return lutemons;
     }
-    public static HashMap<Integer, Lutemon> listOfLutemonsAtHome() {
+    public static ArrayList<Lutemon> listOfLutemonsAtHome() {
         return lutemonsAtHome;
 
     }
-    public static HashMap<Integer, Lutemon> listOfLutemonsAtBattleField() {
+    public static ArrayList<Lutemon> listOfLutemonsAtBattleField() {
         return lutemonsAtBattleField;
     }
-    public static HashMap<Integer, Lutemon> listOfLutemonsAtTrainingArea() {
+    public static ArrayList<Lutemon> listOfLutemonsAtTrainingArea() {
         return lutemonsAtTrainingArea;
     }
 
     public static void moveLutemonToBattleField(int id) {
-        for (Lutemon lutemon : lutemons.values()) {
+        for (Lutemon lutemon : lutemons) {
             if (lutemon.id == id) {
-                lutemonsAtHome.remove(lutemon.id, lutemon);
+                lutemonsAtHome.remove(lutemon);
                 numberOfLutemonsAtHome --;
-                lutemonsAtBattleField.put(lutemon.id, lutemon);
+                lutemonsAtBattleField.add(lutemon);
                 BattleField.addLutemon();
             }
         }
     }
     public static void moveLutemonToTrainingArea(int id) {
-        for (Lutemon lutemon : lutemons.values()) {
+        for (Lutemon lutemon : lutemons) {
             if (lutemon.id == id) {
-                lutemonsAtHome.remove(lutemon.id, lutemon);
-                lutemonsAtTrainingArea.put(lutemon.id, lutemon);
+                lutemonsAtHome.remove(lutemon);
+                lutemonsAtTrainingArea.add(lutemon);
                 numberOfLutemonsAtHome --;
                 TrainingArea.addLutemon();
 
@@ -58,10 +69,10 @@ public class Home  {
 
     } 
     public static void moveLutemonToHomeFromTraining(int id) {
-        for (Lutemon lutemon : lutemons.values()) {
+        for (Lutemon lutemon : lutemons) {
             if (lutemon.id == id) {
-                lutemonsAtTrainingArea.remove(lutemon.id, lutemon);
-                lutemonsAtHome.put(lutemon.id, lutemon);
+                lutemonsAtTrainingArea.remove(lutemon);
+                lutemonsAtHome.add(lutemon);
                 numberOfLutemonsAtHome ++;
                 TrainingArea.removeLutemon();
 
@@ -69,10 +80,10 @@ public class Home  {
         }
     }
     public static void moveLutemonToHomeFromBattle(int id) {
-        for (Lutemon lutemon : lutemons.values()) {
+        for (Lutemon lutemon : lutemons) {
             if (lutemon.id == id) {
-                lutemonsAtBattleField.remove(lutemon.id, lutemon);
-                lutemonsAtHome.put(lutemon.id, lutemon);
+                lutemonsAtBattleField.remove(lutemon);
+                lutemonsAtHome.add(lutemon);
                 numberOfLutemonsAtHome++;
                 BattleField.removeLutemon();
             }
