@@ -21,10 +21,11 @@
 
     <Button
         android:id="@+id/trainSelected"
-        android:layout_width="140dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="165dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="8dp"
         android:onClick="trainButton"
         android:text="Train Selected"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,10 +37,11 @@
 
     <Button
         android:id="@+id/moveHome"
-        android:layout_width="152dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="165dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="15dp"
         android:onClick="moveHomeBtn"
         android:text="Move To Home"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,15 +52,16 @@
 
     <Button
         android:id="@+id/xpBtn"
-        android:layout_width="333dp"
-        android:layout_height="57dp"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
         android:text="+1 Experience"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.972" />
+        app:layout_constraintVertical_bias="0.972"
+        android:background="@drawable/white_button"/>
 
     <RadioGroup
         android:id="@+id/trainingLutemons"

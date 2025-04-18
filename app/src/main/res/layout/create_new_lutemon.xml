@@ -9,13 +9,18 @@
 
     <EditText
         android:id="@+id/newLutemonName"
-        android:layout_width="220dp"
-        android:layout_height="51dp"
+        android:layout_width="339dp"
+        android:layout_height="53dp"
+        android:background="@drawable/white_button"
         android:ems="10"
         android:hint="Enter Lutemon name"
         android:inputType="text"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:selectAllOnFocus="false"
-        android:singleLine="false"
+        android:singleLine="true"
+        android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -98,28 +103,35 @@
 
     <Button
         android:id="@+id/selectColorBtn"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="217dp"
-        android:layout_height="55dp"
+        android:background="@drawable/purple_button"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="68dp"
-
         android:onClick="newLutemon"
         android:text="Create"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:textAlignment="gravity"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createLutemonBtn"
-        app:layout_constraintVertical_bias="0.788" />
+        app:layout_constraintVertical_bias="0.788"
+        app:cornerRadius="5dp"/>
 
-    <Button
+    <TextView
         android:id="@+id/cancleBtn"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="226dp"
-        android:layout_height="52dp"
+        android:background="@drawable/white_button"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="24dp"
         android:onClick="cancleBtn"
-        android:text="cancel"
+        android:text="Cancel"
+        android:textStyle="bold"
+        android:textColor="#6D36CE"
+        android:textAlignment="gravity"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

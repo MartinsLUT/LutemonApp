@@ -41,19 +41,14 @@ public class BattleArenaActivity extends AppCompatActivity {
 
 
 
-        ArrayList<Lutemon> lutemons = Home.listOfLutemonsAtBattleField();
-        try {
-            lutemon1 = lutemons.get(0);
-        }
-        catch (IndexOutOfBoundsException e){
-            lutemon1 = null;
-        };
-        try {
-            lutemon2 = lutemons.get(1);
+        HashMap<Integer, Lutemon> lutemons = Storage.getLutemonsAtBattleField();
+        for (Lutemon lutemon : lutemons.values()) {
+            if (lutemon1 == null) {
+                lutemon1 = lutemon;
+            } else {
+                lutemon2 = lutemon;
             }
-        catch (IndexOutOfBoundsException e){
-            lutemon2 = null;
-        };
+        }
 
         if (lutemon1 != null) {
             showLutemons(lutemon1, lutemonLayout1);
@@ -143,10 +138,10 @@ public class BattleArenaActivity extends AppCompatActivity {
             battleResult.addView(resultInfo);
 
             if (lutemon1 != null) {
-                Home.moveLutemonToHomeFromBattle(lutemon1.id);
+                Storage.moveLutemonToHomeFromBattle(lutemon1.id);
             }
             if (lutemon2 != null) {
-                Home.moveLutemonToHomeFromBattle(lutemon2.id);
+                Storage.moveLutemonToHomeFromBattle(lutemon2.id);
             }
             lutemon1 = null;
             lutemon2 = null;
@@ -185,10 +180,10 @@ public class BattleArenaActivity extends AppCompatActivity {
 
     public void endBattle(View view){
         if (lutemon1 != null) {
-            Home.moveLutemonToHomeFromBattle(lutemon1.id);
+            Storage.moveLutemonToHomeFromBattle(lutemon1.id);
         }
         if (lutemon2 != null) {
-            Home.moveLutemonToHomeFromBattle(lutemon2.id);
+            Storage.moveLutemonToHomeFromBattle(lutemon2.id);
         }
 
 

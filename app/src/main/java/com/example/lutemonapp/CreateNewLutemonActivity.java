@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CreateNewLutemonActivity extends AppCompatActivity {
     EditText newLutemonName;
-    Button selectColorBtn;
     RadioButton createWhiteBtn;
     RadioButton createGreenBtn;
     RadioButton createPinkBtn;
