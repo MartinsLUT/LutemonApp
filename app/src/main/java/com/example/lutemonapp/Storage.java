@@ -45,7 +45,7 @@ public class Storage {
             if (lutemon.id == id) {
                 lutemonsAtHome.remove(lutemon.id);
                 Home.remove();
-                lutemonsAtBattleField.put(lutemon.id, lutemon);
+                lutemonsAtBattleField.put(BattleField.getNumberOfLutemonsAtBattle(), lutemon);
                 BattleField.addLutemon();
             }
         }

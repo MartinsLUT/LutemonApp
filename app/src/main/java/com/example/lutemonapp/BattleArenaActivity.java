@@ -35,20 +35,15 @@ public class BattleArenaActivity extends AppCompatActivity {
         battleResult = findViewById(R.id.battleResult);
         nextAttack = findViewById(R.id.nextAttack);
         endBattle = findViewById(R.id.endBattle);
-        //lutemonArrow = findViewById(R.id.lutemonArrow);
-        //lutemonArrowLeft = getLayoutInflater().inflate(R.layout.arrow_left, null);
-        //lutemonArrowRight = getLayoutInflater().inflate(R.layout.arrow_right, null);
+        lutemonArrow = findViewById(R.id.battleArrow);
+        lutemonArrowLeft = getLayoutInflater().inflate(R.layout.arrow_left_layout, null);
+        lutemonArrowRight = getLayoutInflater().inflate(R.layout.arrow_right_layout, null);
 
 
 
         HashMap<Integer, Lutemon> lutemons = Storage.getLutemonsAtBattleField();
-        for (Lutemon lutemon : lutemons.values()) {
-            if (lutemon1 == null) {
-                lutemon1 = lutemon;
-            } else {
-                lutemon2 = lutemon;
-            }
-        }
+        lutemon1 = lutemons.get(0);
+        lutemon2 = lutemons.get(1);
 
         if (lutemon1 != null) {
             showLutemons(lutemon1, lutemonLayout1);
@@ -122,9 +117,6 @@ public class BattleArenaActivity extends AppCompatActivity {
         TextView resultInfo = new TextView(this);
         TextView lutemon1Health = new TextView(this);
         TextView lutemon2Health = new TextView(this);
-
-
-
         battleResult.removeAllViews();
         attackInfo.setText(lutemon1.color + " (" + lutemon1.name + ") attacks " + lutemon2.color + " (" + lutemon2.name + ").");
         battleResult.addView(attackInfo);
@@ -133,6 +125,7 @@ public class BattleArenaActivity extends AppCompatActivity {
         if (result == 1) {
             lutemonLayout1.removeAllViews();
             lutemonLayout2.removeAllViews();
+            lutemonArrow.removeAllViews();
             battleResult.removeAllViews();
             resultInfo.setText(lutemon1.color + " (" + lutemon1.name + ") wins!");
             battleResult.addView(resultInfo);
@@ -153,20 +146,21 @@ public class BattleArenaActivity extends AppCompatActivity {
 
             lutemonLayout1.removeAllViews();
             lutemonLayout2.removeAllViews();
+            lutemonArrow.removeAllViews();
 
             if (iter%2 == 0){
                 lutemon1Health.setText(lutemon1.color + " (" + lutemon1.name + ") health: " + lutemon1.health + "/" + lutemon1.maxHealth);
                 lutemon2Health.setText(lutemon2.color + " (" + lutemon2.name + ") health: " + lutemon2.health + "/" + lutemon2.maxHealth);
                 showLutemons(lutemon1, lutemonLayout1);
                 showLutemons(lutemon2, lutemonLayout2);
-                //lutemonArrow.addView(lutemonArrowRight);
+                lutemonArrow.addView(lutemonArrowRight);
             }
             else {
                 showLutemons(lutemon2, lutemonLayout1);
                 showLutemons(lutemon1, lutemonLayout2);
                 lutemon2Health.setText(lutemon1.color + " (" + lutemon1.name + ") health: " + lutemon1.health + "/" + lutemon1.maxHealth);
                 lutemon1Health.setText(lutemon2.color + " (" + lutemon2.name + ") health: " + lutemon2.health + "/" + lutemon2.maxHealth);
-                //lutemonArrow.addView(lutemonArrowLeft);
+                lutemonArrow.addView(lutemonArrowLeft);
             }
             battleResult.addView(lutemon1Health);
             battleResult.addView(lutemon2Health);
@@ -191,9 +185,5 @@ public class BattleArenaActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-    public void backBtn(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
+
 }
