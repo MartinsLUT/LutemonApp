@@ -17,6 +17,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/white"
         android:textSize="34sp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -26,11 +27,13 @@
 
     <Button
         android:id="@+id/nextAttack"
-        android:background="@drawable/white_button"
+
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:onClick="battleBtn"
         android:text="Next Attack"
+        app:backgroundTint="#673AB7"
+        app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,11 +45,13 @@
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:layout_marginTop="4dp"
-        android:background="@drawable/white_button"
-        android:backgroundTint="#E2D5D5"
+
+
         android:backgroundTintMode="add"
         android:onClick="endBattle"
         android:text="End Battle"
+        app:cornerRadius="5dp"
+        app:backgroundTint="#673AB7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -103,9 +103,9 @@
 
     <Button
         android:id="@+id/selectColorBtn"
-        android:background="@drawable/purple_button"
+
         android:layout_width="340dp"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:layout_marginBottom="68dp"
         android:onClick="newLutemon"
         android:text="Create"
@@ -113,6 +113,7 @@
         android:textColor="#FFFFFF"
         android:textAlignment="gravity"
         android:gravity="center"
+        app:backgroundTint="#673AB7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

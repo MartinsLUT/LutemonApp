@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BattleArenaActivity extends AppCompatActivity {
@@ -21,8 +20,6 @@ public class BattleArenaActivity extends AppCompatActivity {
     Lutemon lutemon1, lutemon2;
     View lutemonArrowLeft, lutemonArrowRight;
     int iter = 0;
-
-
 
 
     @Override
@@ -42,8 +39,13 @@ public class BattleArenaActivity extends AppCompatActivity {
 
 
         HashMap<Integer, Lutemon> lutemons = Storage.getLutemonsAtBattleField();
-        lutemon1 = lutemons.get(0);
-        lutemon2 = lutemons.get(1);
+        for (Lutemon lutemon : lutemons.values()) {
+            if (lutemon1 == null) {
+                lutemon1 = lutemon;
+            } else {
+                lutemon2 = lutemon;
+            }
+        }
 
         if (lutemon1 != null) {
             showLutemons(lutemon1, lutemonLayout1);
@@ -89,7 +91,6 @@ public class BattleArenaActivity extends AppCompatActivity {
 
         textView.setText(lutemon.name + "\nHP: " + lutemon.health + "/" + lutemon.maxHealth + "\nATK: " + lutemon.attack + " DEF: " + lutemon.defense + " EXP: " + lutemon.experience);
         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-
 
         lutemonLayout.addView(imageView);
         lutemonLayout.addView(textView);
@@ -138,6 +139,8 @@ public class BattleArenaActivity extends AppCompatActivity {
             }
             lutemon1 = null;
             lutemon2 = null;
+
+
             }
 
         else if (result == 0){
@@ -174,10 +177,12 @@ public class BattleArenaActivity extends AppCompatActivity {
 
     public void endBattle(View view){
         if (lutemon1 != null) {
-            Storage.moveLutemonToHomeFromBattle(lutemon1.id);
+        Storage.moveLutemonToHomeFromBattle(lutemon1.id);
+        lutemon1 = null;
         }
         if (lutemon2 != null) {
-            Storage.moveLutemonToHomeFromBattle(lutemon2.id);
+        Storage.moveLutemonToHomeFromBattle(lutemon2.id);
+        lutemon2 = null;
         }
 
 
@@ -185,5 +190,4 @@ public class BattleArenaActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
 }

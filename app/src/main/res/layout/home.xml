@@ -24,7 +24,7 @@
 
     <Button
         android:id="@+id/moveTraining"
-        style="@style/Widget.AppCompat.Button"
+
         android:layout_width="165dp"
         android:layout_height="50dp"
         android:layout_marginStart="15dp"
@@ -32,6 +32,8 @@
         android:onClick="moveToTraining"
         android:text="Move To Training"
         android:textSize="12sp"
+        app:backgroundTint="#673AB7"
+        app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/moveBattle"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +42,7 @@
 
     <Button
         android:id="@+id/moveBattle"
-        style="@style/Widget.AppCompat.Button"
+
         android:layout_width="165dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -48,6 +50,8 @@
         android:onClick="moveToBattle"
         android:text="Move To Battle"
         android:textSize="12sp"
+        app:backgroundTint="#673AB7"
+        app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.926"
@@ -75,10 +79,11 @@
 
     <Button
         android:id="@+id/button2"
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:text="Back"
+        app:backgroundTint="#673AB7"
+        app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

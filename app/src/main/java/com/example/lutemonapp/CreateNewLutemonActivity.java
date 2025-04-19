@@ -36,12 +36,11 @@ public class CreateNewLutemonActivity extends AppCompatActivity {
 
     }
 
-
-
     public void cancleBtn(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         finish();
     }
-
 
     public void newLutemon (View view) {
         String lutemonName = newLutemonName.getText().toString();

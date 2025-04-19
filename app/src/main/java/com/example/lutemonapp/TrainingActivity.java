@@ -25,13 +25,10 @@ public class TrainingActivity extends AppCompatActivity {
     TextView lutemonProgress;
     ArrayList<RadioButton> checkedLutemon = new ArrayList<>();
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.training_area);
-
 
         radioGroup = findViewById(R.id.trainingLutemons);
         moveHome = findViewById(R.id.moveHome);
@@ -41,10 +38,7 @@ public class TrainingActivity extends AppCompatActivity {
         lutemonFigure = getLayoutInflater().inflate(R.layout.lutemon_figure, null);
         lutemonProgress = lutemonFigure.findViewById(R.id.lutemonTrainingProgress);
 
-
-
         showLutemons();
-
 
         xpBtn.setOnClickListener(v -> {
             if (lutemonProgress.getText().equals("Training in progress ...")) {
@@ -57,13 +51,9 @@ public class TrainingActivity extends AppCompatActivity {
                 xpBtn.setError("Train first!");
             }
         });
-
-
     }
-
     private void showLutemons(){
         radioGroup.removeAllViews();
-
         for(Lutemon lutemon : Storage.getLutemonsAtTrainingArea().values()){
             View lutemonRadioBtn = LayoutInflater.from(this).inflate(R.layout.lutemon_radiobtn, null);
 
@@ -103,23 +93,19 @@ public class TrainingActivity extends AppCompatActivity {
 
             colorCircle.setBackgroundResource(colorId);
             radioGroup.addView(lutemonRadioBtn);
-
         }
     }
-
     public void trainButton(View view) {
         for (int i = 0; i < checkedLutemon.size(); i++) {
             if (checkedLutemon.get(i).isChecked()) {
                 radioGroup.check(checkedLutemon.get(i).getId());
             }
-
         }
         try {
             selectedLutemon = Storage.getLutemonsAtTrainingArea().get(radioGroup.getCheckedRadioButtonId());
         } catch (IndexOutOfBoundsException e) {
             selectedLutemon = null;
         }
-
         if (selectedLutemon != null && selectedLutemon.experience > 0) {
             TrainingArea.train(selectedLutemon);
             View colorCircle = lutemonFigure.findViewById(R.id.lutemonColorCircle);
@@ -153,7 +139,6 @@ public class TrainingActivity extends AppCompatActivity {
         if (lutemonProgress.getText().equals("Training in progress ...")) {
             moveHome.setError("Train first!");
             return;
-
         } else if (checkedLutemon.size() == 0) {
             moveHome.setError("Select a lutemon!");
             return;
@@ -164,15 +149,11 @@ public class TrainingActivity extends AppCompatActivity {
                     radioGroup.check(checkedLutemon.get(i).getId());
                 }
             }
-
         }
-
         selectedLutemon = Storage.getLutemonsAtTrainingArea().get(radioGroup.getCheckedRadioButtonId());
         Storage.moveLutemonToHomeFromTraining(selectedLutemon.id);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
-
     }
-
 }

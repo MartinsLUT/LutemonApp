@@ -26,9 +26,6 @@ public class StatisticsActivity extends AppCompatActivity {
         totalBattles.setText("Total Battles: " + BattleField.getNumberOfBattles());
         totalTrainings.setText("Total Training Sessions: " + TrainingArea.getNumberOfTrainingSessions());
 
-        //Using stats layout
-
-
         for (Lutemon lutemon : Storage.getAllLutemons().values()) {
             View lutemonStats = getLayoutInflater().inflate(R.layout.stats_layout, null);
             TextView lutemonName = lutemonStats.findViewById(R.id.lutemonName);
@@ -42,7 +39,6 @@ public class StatisticsActivity extends AppCompatActivity {
             battleCount.setText(String.valueOf(lutemon.battles));
             winsCount.setText(String.valueOf(lutemon.wins));
             trainingCount.setText(String.valueOf(lutemon.trainings));
-
 
             int colorId = 0;
             switch (lutemon.color) {
@@ -61,13 +57,10 @@ public class StatisticsActivity extends AppCompatActivity {
                 case "Orange":
                     colorId = R.drawable.circle_orange;
                     break;
-
             }
             lutemonColorCircle.setBackgroundResource(colorId);
             lutemonStatsList.addView(lutemonStats);
-
         }
-
     }
     public void goHomeBtn(View view){
         finish();

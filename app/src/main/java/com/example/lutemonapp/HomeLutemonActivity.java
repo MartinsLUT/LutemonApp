@@ -27,11 +27,7 @@ public class HomeLutemonActivity extends AppCompatActivity {
         moveToTraining = findViewById(R.id.moveTraining);
         backBtn = findViewById(R.id.button2);
         backBtn.setOnClickListener(v -> finish());
-
-
         showLutemons();
-
-
 
     }
     public void moveToBattle (View view) {
@@ -48,7 +44,6 @@ public class HomeLutemonActivity extends AppCompatActivity {
             finish();
         } else {
             moveToBattle.setError("Select a lutemon!");
-
         }
     }
     public void moveToTraining(View view){
@@ -71,11 +66,9 @@ public class HomeLutemonActivity extends AppCompatActivity {
 
     private void showLutemons() {
         radioGroup.removeAllViews();
-
         for(Lutemon lutemon : Storage.getLutemonsAtHome().values()){
             View lutemonRadioBtn = LayoutInflater.from(this).inflate(R.layout.lutemon_radiobtn, null);
 
-            //RadioButton radioButton = new RadioButton(this);
             RadioButton radioButton = lutemonRadioBtn.findViewById(R.id.lutemonRadioButton);
             radioButton.setId(lutemon.getId());
             radioButton.setOnClickListener(v -> {
@@ -85,8 +78,6 @@ public class HomeLutemonActivity extends AppCompatActivity {
                 radioButton.setChecked(true);
             });
             checkedLutemon.add(radioButton);
-
-
 
             TextView lutemonName = lutemonRadioBtn.findViewById(R.id.lutemonName);
             TextView lutemonColor = lutemonRadioBtn.findViewById(R.id.lutemonColor);
