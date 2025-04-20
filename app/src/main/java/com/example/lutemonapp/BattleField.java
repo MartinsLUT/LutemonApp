@@ -14,7 +14,6 @@ public class BattleField {
             lutemon1.battles += 1;
             lutemon2.battles +=1;
             lutemon2.health = lutemon2.maxHealth;
-            lutemon2.experience = 0;
             numberOfBattles++;
             return 1;
         }
