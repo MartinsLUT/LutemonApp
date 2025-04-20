@@ -32,6 +32,7 @@
         android:layout_height="50dp"
         android:onClick="battleBtn"
         android:text="Next Attack"
+        android:textStyle="bold"
         app:backgroundTint="#673AB7"
         app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,8 +46,7 @@
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:layout_marginTop="4dp"
-
-
+        android:textStyle="bold"
         android:backgroundTintMode="add"
         android:onClick="endBattle"
         android:text="End Battle"

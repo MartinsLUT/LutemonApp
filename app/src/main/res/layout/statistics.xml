@@ -102,11 +102,12 @@
 
     <Button
         android:id="@+id/button"
-
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:onClick="goHomeBtn"
         android:text="Go Back to Home Screen"
+        app:backgroundTint="#673AB7"
+        app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -17,7 +17,7 @@ public class Lutemon {
     public int trainings;
     public int battles;
 
-    public Lutemon(String name, String color, int attack, int defense, int experience, int health, int maxHealth){
+    public Lutemon(String name, String color, int attack, int defense, int experience, int health, int maxHealth, int wins, int trainings, int battles){
         this.name = name;
         this.color = color;
         this.attack = attack;
@@ -26,9 +26,9 @@ public class Lutemon {
         this.health = health;
         this.maxHealth = maxHealth;
         this.id = idCounter++;
-        this.wins = 0;
-        this.trainings = 0;
-        this.battles = 0;
+        this.wins = wins;
+        this.trainings = trainings;
+        this.battles = battles;
     }
 
 
@@ -48,5 +48,11 @@ public class Lutemon {
 
     public int getId() {
         return id;
+    }
+
+
+
+    public String lutemonInfo() {
+        return name + "," + color + "," + attack + "," + defense + "," + experience + "," + health + "," + maxHealth + "," + wins + "," + trainings + "," + battles;
     }
 }

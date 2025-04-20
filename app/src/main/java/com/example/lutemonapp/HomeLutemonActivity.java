@@ -25,8 +25,6 @@ public class HomeLutemonActivity extends AppCompatActivity {
         radioGroup = findViewById(R.id.radioGroup);
         moveToBattle = findViewById(R.id.moveBattle);
         moveToTraining = findViewById(R.id.moveTraining);
-        backBtn = findViewById(R.id.button2);
-        backBtn.setOnClickListener(v -> finish());
         showLutemons();
 
     }
@@ -113,5 +111,10 @@ public class HomeLutemonActivity extends AppCompatActivity {
             radioGroup.addView(lutemonRadioBtn);
         }
 
+    }
+    public void backBtn(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
