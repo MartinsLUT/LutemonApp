@@ -117,16 +117,16 @@ public class BattleArenaActivity extends AppCompatActivity {
             //displaying result
             resultInfo.setText(lutemon1.color + " (" + lutemon1.name + ") wins!");
             battleResult.addView(resultInfo);
+            showLutemons(lutemon1, lutemonLayout1);
 
-            //send lutemons to home
-            if (lutemon1 != null) {
-                Storage.moveLutemonToHomeFromBattle(lutemon1.id);
-            }
+            //send lutemon2 to home
+
             if (lutemon2 != null) {
                 Storage.moveLutemonToHomeFromBattle(lutemon2.id);
+                //reset health
+                lutemon2.health = lutemon2.maxHealth;
             }
-            //both lutemon spots are reset to empty
-            lutemon1 = null;
+            //reset lutemon2 because it lost
             lutemon2 = null;
             iter = 0;
             }
@@ -170,12 +170,16 @@ public class BattleArenaActivity extends AppCompatActivity {
         //resets the lutemon spots to empty
         //also if they have gotten damage from battle it stays like that till they get defeated or trained
         if (lutemon1 != null) {
-        Storage.moveLutemonToHomeFromBattle(lutemon1.id);
-        lutemon1 = null;
+            Storage.moveLutemonToHomeFromBattle(lutemon1.id);
+            //reset health
+            lutemon1.health = lutemon1.maxHealth;
+            lutemon1 = null;
         }
         if (lutemon2 != null) {
-        Storage.moveLutemonToHomeFromBattle(lutemon2.id);
-        lutemon2 = null;
+            Storage.moveLutemonToHomeFromBattle(lutemon2.id);
+            //reset health
+            lutemon2.health = lutemon2.maxHealth;
+            lutemon2 = null;
         }
         iter = 0;
 
@@ -195,5 +199,10 @@ public class BattleArenaActivity extends AppCompatActivity {
             showLutemons(lutemon1, lutemonLayout1);
             showLutemons(lutemon2, lutemonLayout2);
         }
+    }
+    public void goHomeScreen(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
