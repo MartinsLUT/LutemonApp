@@ -8,9 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.HashMap;
 
 public class BattleArenaActivity extends AppCompatActivity {
@@ -20,7 +18,6 @@ public class BattleArenaActivity extends AppCompatActivity {
     Lutemon lutemon1, lutemon2;
     View lutemonArrowLeft, lutemonArrowRight;
     int iter = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +32,7 @@ public class BattleArenaActivity extends AppCompatActivity {
         lutemonArrow = findViewById(R.id.battleArrow);
         lutemonArrowLeft = getLayoutInflater().inflate(R.layout.arrow_left_layout, null);
         lutemonArrowRight = getLayoutInflater().inflate(R.layout.arrow_right_layout, null);
-
-
-
+        //from lutemons in battle field hashmap it sets one to lutemon1 other to lutemon2
         HashMap<Integer, Lutemon> lutemons = Storage.getLutemonsAtBattleField();
         for (Lutemon lutemon : lutemons.values()) {
             if (lutemon1 == null) {
@@ -46,17 +41,13 @@ public class BattleArenaActivity extends AppCompatActivity {
                 lutemon2 = lutemon;
             }
         }
-
+        //displaying lutemons
         if (lutemon1 != null) {
             showLutemons(lutemon1, lutemonLayout1);
         }
         if (lutemon2 != null) {
             showLutemons(lutemon2, lutemonLayout2);
         }
-
-
-
-
     }
 
     private void showLutemons(Lutemon lutemon, LinearLayout layout) {
@@ -95,8 +86,6 @@ public class BattleArenaActivity extends AppCompatActivity {
         lutemonLayout.addView(imageView);
         lutemonLayout.addView(textView);
         layout.addView(lutemonLayout);
-
-
     }
 
     public void battleBtn(View view) {
@@ -109,11 +98,7 @@ public class BattleArenaActivity extends AppCompatActivity {
             nextAttack.setError("Fith Over!");
             return;
         }
-        else if (lutemon1 == null || lutemon2 == null){
-            nextAttack.setError("Need Two Lutemons!");
-            return;
-        }
-
+        //displaying battle info
         TextView attackInfo = new TextView(this);
         TextView resultInfo = new TextView(this);
         TextView lutemon1Health = new TextView(this);
@@ -124,26 +109,30 @@ public class BattleArenaActivity extends AppCompatActivity {
 
         int result = BattleField.fight(lutemon1, lutemon2);
         if (result == 1) {
+            //if lutemon2 health is <= 0 then lutemon1 wins
             lutemonLayout1.removeAllViews();
             lutemonLayout2.removeAllViews();
             lutemonArrow.removeAllViews();
             battleResult.removeAllViews();
+            //displaying result
             resultInfo.setText(lutemon1.color + " (" + lutemon1.name + ") wins!");
             battleResult.addView(resultInfo);
 
+            //send lutemons to home
             if (lutemon1 != null) {
                 Storage.moveLutemonToHomeFromBattle(lutemon1.id);
             }
             if (lutemon2 != null) {
                 Storage.moveLutemonToHomeFromBattle(lutemon2.id);
             }
+            //both lutemon spots are reset to empty
             lutemon1 = null;
             lutemon2 = null;
-
-
+            iter = 0;
             }
 
         else if (result == 0){
+            //if both lutemons are still alive
             resultInfo.setText(lutemon2.color + " (" + lutemon2.name + ") escapes death!");
             battleResult.addView(resultInfo);
 
@@ -167,7 +156,8 @@ public class BattleArenaActivity extends AppCompatActivity {
             }
             battleResult.addView(lutemon1Health);
             battleResult.addView(lutemon2Health);
-
+            //swithc lutemon1 and lutemon2 places
+            //lutemon1 is always the attacker lutemon2 the defender
             Lutemon temp = lutemon1;
             lutemon1 = lutemon2;
             lutemon2 = temp;
@@ -176,6 +166,9 @@ public class BattleArenaActivity extends AppCompatActivity {
     }
 
     public void endBattle(View view){
+        //if end battle is selected it returns both lutemons home
+        //resets the lutemon spots to empty
+        //also if they have gotten damage from battle it stays like that till they get defeated or trained
         if (lutemon1 != null) {
         Storage.moveLutemonToHomeFromBattle(lutemon1.id);
         lutemon1 = null;
@@ -184,10 +177,23 @@ public class BattleArenaActivity extends AppCompatActivity {
         Storage.moveLutemonToHomeFromBattle(lutemon2.id);
         lutemon2 = null;
         }
-
+        iter = 0;
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+    public void switchLutemons(View view){
+        if (lutemon1 != null && lutemon2 != null) {
+            lutemonLayout1.removeAllViews();
+            lutemonLayout2.removeAllViews();
+            lutemonArrow.removeAllViews();
+            //switch lutemon1 and lutemon2 places
+            Lutemon temp = lutemon1;
+            lutemon1 = lutemon2;
+            lutemon2 = temp;
+            showLutemons(lutemon1, lutemonLayout1);
+            showLutemons(lutemon2, lutemonLayout2);
+        }
     }
 }

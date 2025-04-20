@@ -3,9 +3,7 @@ package com.example.lutemonapp;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
-
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class StatisticsActivity extends AppCompatActivity {
@@ -21,12 +19,13 @@ public class StatisticsActivity extends AppCompatActivity {
         totalBattles = findViewById(R.id.textView10);
         totalTrainings = findViewById(R.id.textView11);
         lutemonStatsList = findViewById(R.id.lutemonsAtHome);
-
+        //setting the general stats for game
         totalLutemons.setText("Total Lutemons created: " + Lutemon.getNumberOfCreatedLutemons());
         totalBattles.setText("Total Battles: " + BattleField.getNumberOfBattles());
         totalTrainings.setText("Total Training Sessions: " + TrainingArea.getNumberOfTrainingSessions());
 
         for (Lutemon lutemon : Storage.getAllLutemons().values()) {
+            //displaying lutemon individual stats
             View lutemonStats = getLayoutInflater().inflate(R.layout.stats_layout, null);
             TextView lutemonName = lutemonStats.findViewById(R.id.lutemonName);
             TextView lutemonColor = lutemonStats.findViewById(R.id.lutemonColor);

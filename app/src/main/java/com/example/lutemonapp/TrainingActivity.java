@@ -1,19 +1,15 @@
 package com.example.lutemonapp;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 
 public class TrainingActivity extends AppCompatActivity {
@@ -38,19 +34,8 @@ public class TrainingActivity extends AppCompatActivity {
         lutemonFigure = getLayoutInflater().inflate(R.layout.lutemon_figure, null);
         lutemonProgress = lutemonFigure.findViewById(R.id.lutemonTrainingProgress);
 
-        showLutemons();
+        showLutemons(); //display lutemons
 
-        xpBtn.setOnClickListener(v -> {
-            if (lutemonProgress.getText().equals("Training in progress ...")) {
-                TrainingArea.addXp(selectedLutemon);
-                Storage.moveLutemonToHomeFromTraining(selectedLutemon.id);
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-                xpBtn.setError("Train first!");
-            }
-        });
     }
     private void showLutemons(){
         radioGroup.removeAllViews();
@@ -59,7 +44,7 @@ public class TrainingActivity extends AppCompatActivity {
 
             RadioButton radioButton = lutemonRadioBtn.findViewById(R.id.lutemonRadioButton);
             radioButton.setId(lutemon.getId());
-            checkedLutemon.add(radioButton);
+            checkedLutemon.add(radioButton); //add the radio button to ArrayList
 
             TextView lutemonName = lutemonRadioBtn.findViewById(R.id.lutemonName);
             TextView lutemonColor = lutemonRadioBtn.findViewById(R.id.lutemonColor);
@@ -96,6 +81,7 @@ public class TrainingActivity extends AppCompatActivity {
         }
     }
     public void trainButton(View view) {
+        //check the list for the button if checked and get id
         for (int i = 0; i < checkedLutemon.size(); i++) {
             if (checkedLutemon.get(i).isChecked()) {
                 radioGroup.check(checkedLutemon.get(i).getId());
@@ -107,6 +93,7 @@ public class TrainingActivity extends AppCompatActivity {
             selectedLutemon = null;
         }
         if (selectedLutemon != null && selectedLutemon.experience > 0) {
+            //lutemon is training and a layout is added in the training_area view
             TrainingArea.train(selectedLutemon);
             View colorCircle = lutemonFigure.findViewById(R.id.lutemonColorCircle);
             lutemonProgress.setText("Training in progress ...");
@@ -136,6 +123,7 @@ public class TrainingActivity extends AppCompatActivity {
     }
 
     public void moveHomeBtn(View view) {
+        //only works after trained or do not want to train the lutemon
         if (lutemonProgress.getText().equals("Training in progress ...")) {
             moveHome.setError("Train first!");
             return;
@@ -155,5 +143,19 @@ public class TrainingActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+    public void addXpBtn(View view){
+        //set to work only if train selected is pressed
+        if (lutemonProgress.getText().equals("Training in progress ...")) {
+            TrainingArea.addXp(selectedLutemon);
+            Storage.moveLutemonToHomeFromTraining(selectedLutemon.id);
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            xpBtn.setError("Train first!");
+        }
+
+
     }
 }

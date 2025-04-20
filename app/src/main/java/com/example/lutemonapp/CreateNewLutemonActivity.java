@@ -1,7 +1,5 @@
 package com.example.lutemonapp;
 
-
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,7 +9,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 
 public class CreateNewLutemonActivity extends AppCompatActivity {
     EditText newLutemonName;
@@ -27,13 +24,11 @@ public class CreateNewLutemonActivity extends AppCompatActivity {
         setContentView(R.layout.create_new_lutemon);
 
         newLutemonName = findViewById(R.id.newLutemonName);
-
         createWhiteBtn = findViewById(R.id.createWhiteBtn);
         createGreenBtn = findViewById(R.id.createGreenBtn);
         createPinkBtn = findViewById(R.id.createPinkBtn);
         createBlackBtn = findViewById(R.id.createBlackBtn);
         createOrangeBtn = findViewById(R.id.createOrangeBtn);
-
     }
 
     public void cancleBtn(View view) {
@@ -43,13 +38,13 @@ public class CreateNewLutemonActivity extends AppCompatActivity {
     }
 
     public void newLutemon (View view) {
+        //get the chosen lutemon name
         String lutemonName = newLutemonName.getText().toString();
-
         if (lutemonName.isEmpty()) {
             newLutemonName.setError("Please enter a name");
             return;
         }
-
+        //get the chosen lutemon color
         Lutemon lutemon = null;
         if (createWhiteBtn.isChecked()) {
             lutemon = new White(lutemonName);
@@ -64,6 +59,7 @@ public class CreateNewLutemonActivity extends AppCompatActivity {
         }
 
         if (lutemon != null) {
+            //adding lutemon to all lutemons and to home
             Home.createLutemon(lutemon);
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);

@@ -8,9 +8,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 
 public class HomeLutemonActivity extends AppCompatActivity {
@@ -26,7 +24,6 @@ public class HomeLutemonActivity extends AppCompatActivity {
         moveToBattle = findViewById(R.id.moveBattle);
         moveToTraining = findViewById(R.id.moveTraining);
         showLutemons();
-
     }
     public void moveToBattle (View view) {
         for (int i = 0; i < checkedLutemon.size(); i++) {
@@ -70,13 +67,15 @@ public class HomeLutemonActivity extends AppCompatActivity {
             RadioButton radioButton = lutemonRadioBtn.findViewById(R.id.lutemonRadioButton);
             radioButton.setId(lutemon.getId());
             radioButton.setOnClickListener(v -> {
+                //this is so only one radio button can be selected at once
                 for (RadioButton rb : checkedLutemon) {
                     rb.setChecked(false);
                 }
                 radioButton.setChecked(true);
             });
+            //add the radio button to ArrayList
             checkedLutemon.add(radioButton);
-
+            //dispaly the lutemon
             TextView lutemonName = lutemonRadioBtn.findViewById(R.id.lutemonName);
             TextView lutemonColor = lutemonRadioBtn.findViewById(R.id.lutemonColor);
             TextView lutemonInfo = lutemonRadioBtn.findViewById(R.id.lutemonInfo);
@@ -110,9 +109,9 @@ public class HomeLutemonActivity extends AppCompatActivity {
             colorCircle.setBackgroundResource(colorId);
             radioGroup.addView(lutemonRadioBtn);
         }
-
     }
     public void backBtn(View view) {
+        //go to homescreen_main
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

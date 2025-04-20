@@ -31,28 +31,29 @@ public class Lutemon {
         this.battles = battles;
     }
 
-
-
     public int attack(){
         return attack;
     }
     public int defense(Lutemon lutemon){
-        return lutemon.attack() - defense;
-
-
+        double damage = lutemon.attack()  + Math.random() * (1 + ((double) lutemon.getHealth() / lutemon.getMaxHealth())) - defense;
+        return (int) damage; //damage is a double so need to convert it to an integer
     }
     public static int getNumberOfCreatedLutemons(){
         return idCounter;
     }
 
-
     public int getId() {
         return id;
     }
 
-
-
     public String lutemonInfo() {
+        //Lutemon info for saving file
         return name + "," + color + "," + attack + "," + defense + "," + experience + "," + health + "," + maxHealth + "," + wins + "," + trainings + "," + battles;
+    }
+    public int getHealth(){
+        return health;
+    }
+    public int getMaxHealth(){
+        return maxHealth;
     }
 }
